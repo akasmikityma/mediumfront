@@ -9,7 +9,8 @@ import { RiDeleteBin5Fill } from 'react-icons/ri';
 import { FaEdit } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-
+import Snackbar from '@mui/material/Snackbar';
+import SnackbarContent from '@mui/material/SnackbarContent';
 import LoaderComp from '../Components/Loader';
 
 export interface blogType {
@@ -26,6 +27,7 @@ const Blogs = () => {
   const [loading,setLoading]=useState(false);
   const [isFetched, setIsFetched] = useState(false);
   const [deleteClicked, setDeleteClicked] = useState(false);
+  
 
   const fetchBlogs = useCallback(async () => {
     try {
@@ -35,11 +37,11 @@ const Blogs = () => {
           Authorization: localStorage.getItem('jwt'),
         },
       });
-
+      setLoading(false);
       if (response.data.posts) {
         setBlogs(response.data.posts);
         setIsFetched(true);
-        setLoading(false);
+        
       } else {
         alert('Data not fetched');
       }
@@ -54,13 +56,13 @@ const Blogs = () => {
       fetchBlogs();
     }
   }, [deleteClicked,blogs]);
- if(loading){
-  return (
-    <div className='flex h-screen justify-center'>
-      <LoaderComp/>
-    </div>
-  )
- }
+//  if(loading){
+//   return (
+//     <div className='flex h-screen justify-center'>
+//       <LoaderComp/>
+//     </div>
+//   )
+//  }
   return (
     <div className=''>
       <div className='px-12 '>
@@ -94,6 +96,12 @@ interface BlogProps {
 
 const BlogCell = ({ blog, setDeleteClicked }: BlogProps) => {
   const navigate=useNavigate()
+  const [snackbar,setsnackbar]=useState({
+    open: false,
+    message: '',
+    severity: 'success',
+  })
+
   const handleDelete = async (id: string) => {
     try {
       const response = await axios.delete(`https://backend.akasmik123.workers.dev/api/v1/book/del`, {
@@ -104,15 +112,18 @@ const BlogCell = ({ blog, setDeleteClicked }: BlogProps) => {
       });
 
       if (!response.data.msg) {
-        alert(`Some error occurred while deleting the post`);
+        setsnackbar({ open: true, message: 'Some error occurred while deleting the post', severity: 'error' });
       } else {
-        alert(`The deletion completed ${id}`);
-        setDeleteClicked((prev) => !prev);
+        setsnackbar({ open: true, message: 'Post deleted successfully!', severity: 'success' });
+        setDeleteClicked((prev) => !prev); // Trigger refetch on successful deletion
       }
     } catch (error) {
       console.error('Error deleting the post:', error);
       alert('An error occurred while deleting the post');
     }
+  };
+  const handleClose = () => {
+    setsnackbar({ ...snackbar, open: false });
   };
  const editHandler=(id:string)=>{
   navigate(`/update/${id}`)
@@ -134,6 +145,20 @@ const BlogCell = ({ blog, setDeleteClicked }: BlogProps) => {
       </div>
       <div className='col-span-1 p-5 '>
         <img className='w-1/2 p-5' src='https://bunnyacademy.b-cdn.net/what-is-docker.png' alt='' />
+      </div>
+      <div className=''>
+        <Snackbar
+          open={snackbar.open}
+          autoHideDuration={3000} // Set to 3 seconds
+          onClose={handleClose}
+        >
+          <SnackbarContent
+            message={snackbar.message}
+            className={`fixed top-0 right-0 p-4 ${
+              snackbar.severity === 'success' ? 'bg-green-500' : 'bg-red-500'
+            } text-white`}
+          />
+        </Snackbar>
       </div>
     </div>
   );

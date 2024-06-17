@@ -32,7 +32,7 @@ const getAllSelector=selector({
     }
 })
 
-const getsingleBlog=selectorFamily({
+export const getsingleBlog=selectorFamily({
     key:"getblogbyid",
     get:(blogID)=>({get})=>{
         const blogs=get(blogsState);

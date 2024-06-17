@@ -1,10 +1,14 @@
 import React from 'react'
-import { Dimmer, Loader, Image, Segment } from 'semantic-ui-react'
+import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
 const LoaderComp = () => {
     return (
-        <Dimmer active>
-        <Loader size='massive'>Loading</Loader>
-      </Dimmer>
+      <Box sx={{ display: 'flex',
+        justifyContent:'center',
+        alignItems:'center'
+       }}>
+      <CircularProgress />
+    </Box>
       );
 }
 
