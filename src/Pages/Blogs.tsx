@@ -175,7 +175,6 @@ import { blogsState } from '../store/helper';
 import axios from 'axios';
 import React, { useEffect, useState, useCallback } from 'react';
 import { FaPlus } from 'react-icons/fa';
-import Blog from './Blog';
 import { RiDeleteBin5Fill } from 'react-icons/ri';
 import { FaEdit } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';

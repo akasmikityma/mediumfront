@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { blogType } from './Blogs'
 import axios from 'axios'
-interface blogProps{
-   blog:blogType
-}
 const Blog = () => {
     const [data,setData]=useState<blogType>()
     console.log(`this is the Bolgs Page`)

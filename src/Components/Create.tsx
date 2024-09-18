@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import { CreatePostType } from '@bishal_maity/common'
 import { BsThreeDots } from "react-icons/bs";
 import { FaBell } from "react-icons/fa";

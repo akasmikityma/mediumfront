@@ -1,16 +1,14 @@
-import React, { useState,useEffect } from 'react';
+import { useState,useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { UpdatePostType } from '@bishal_maity/common';
 import axios from 'axios';
 import LoaderComp from '../Components/Loader';
 import Snackbar from '@mui/material/Snackbar';
 import SnackbarContent from '@mui/material/SnackbarContent';
-import { CgEnter } from 'react-icons/cg';
-import { blogType } from './Blogs';
 import { useRecoilValue } from 'recoil';
 import { getsingleBlog } from '../store/helper';
 import { toast } from 'react-toastify';
-const Edit = ({existingData}:{existingData:blogType}) => {
+const Edit = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const selectedBlog=useRecoilValue(getsingleBlog(id))
