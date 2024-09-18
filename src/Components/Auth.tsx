@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SignupType, SigninType } from '@bishal_maity/common';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 const Auth = ({ type }: { type: "signUp" | "signin" }) => {
     const [inputs, setInputs] = React.useState<SignupType | SigninType>(
         type === "signUp"
@@ -21,9 +22,10 @@ const Auth = ({ type }: { type: "signUp" | "signin" }) => {
     };
    const handleButton=async()=>{
        const response =await axios.post(`https://backend.akasmik123.workers.dev/api/v1/user/${type==="signUp"?"signup":"signin"}`,inputs);
-      
-       if(response.data.jwt){
+       console.log(response.data)
+       if(response.status===200){
         localStorage.setItem("jwt",`Bearer ${response.data.jwt}`)
+        toast('Welcome back')
         navigate("/blogs")
        }
        //it just gives a jwt back .. 
@@ -111,10 +113,10 @@ const Quote = () => {
         <div className='h-screen bg-slate-200 flex justify-center items-center'>
             <div className='p-5 w-2/3'>
                 <h3 className='font-bold text-lg'>
-                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim pariatur quis, in excepturi similique perferendis laborum possimus nisi sit, quaerat neque rerum veritatis."
+                    " a platform where stories come to life. Whether you're a seasoned writer or just starting, share your unique perspectives with a global audience and engage in meaningful conversations. Discover inspiring content, connect with like-minded individuals, and make your voice heard"
                 </h3>
-                <h4 className='font-semibold mt-3'>Bisahl</h4>
-                <p>Baler CEO</p>
+                <h4 className='font-semibold mt-3'>- Bishal</h4>
+                <p className='font-extralight'>bloG user</p>
             </div>
         </div>
     );

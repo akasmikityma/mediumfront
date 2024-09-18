@@ -205,3 +205,17 @@ const Blogs = () => {
 
 export default Blogs;
 --------------------------------------------------------- -->
+change the statuscode of the signUP to 201 and then change accordingly in the frontend too then redeploy the backend 
+
+change the lorem ipsum text to something meanigfull text [done]
+in the home page have the title and the short desc of the post and once clicked then take the user to the very post's elaborated verison 
+change the buttons a bit [done]
+have a user logo at the top left of the blog post followed by name 
+
+a user can only delete/edit to its own blogs ..nothing else 
+
+toastify [done]
+
+can be done -- 
+split the home screen into 2 halves and then on the right half i can list all the users ,, that the current user can follow 
+may be a  login/logout thing and the user-logo or something to make it look nicer at least 

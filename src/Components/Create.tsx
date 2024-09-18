@@ -31,15 +31,15 @@ const Create = () => {
      }
     
      return (
-        <div className='p-5 h-screen'>
+        <div className='p-10 h-screen'>
             {loading ? (
                 <LoaderComp />
             ) : (
                 <div>
                     <div className='flex justify-between items-center'>
-                        <div className='flex gap-2 items-center'>
-                            <h3 className='font-bold text-xl'>Draft in Kirags</h3>
-                            <h3>Saved</h3>
+                        <div className='flex gap-2 items-center justify-center'>
+                            <h3 className='font-bold text-2xl'>bloG</h3>
+                            <h3 className='text-sm'>draft</h3>
                         </div>
                         <div className='flex gap-4 items-center'>
                             <button className='px-3 py-1 rounded-full bg-green-600 text-white' onClick={sendPostcall}>Publish</button>

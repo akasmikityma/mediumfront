@@ -9,6 +9,7 @@ import { CgEnter } from 'react-icons/cg';
 import { blogType } from './Blogs';
 import { useRecoilValue } from 'recoil';
 import { getsingleBlog } from '../store/helper';
+import { toast } from 'react-toastify';
 const Edit = ({existingData}:{existingData:blogType}) => {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -40,28 +41,22 @@ const Edit = ({existingData}:{existingData:blogType}) => {
         { headers }
       );
       setLoading(false);
-      if (response.data) {
-        setSnackbar({
-          open: true,
-          message: 'Post updated successfully!',
-          severity: 'success',
-        });
+      if (response.status===200) {
+        toast.success(response.data.msg)
         setTimeout(() => navigate('/blogs'), 3000); // Navigate after 3 seconds
-      } else {
-        setSnackbar({
-          open: true,
-          message: 'Some error occurred. Please try again.',
-          severity: 'error',
-        });
+      } else if(403){
+        setTimeout(() => navigate('/blogs'), 2000);
+        toast.error(response.data.msg)
       }
-    } catch (error) {
-      console.error('Error updating post:', error);
-      setLoading(false);
-      setSnackbar({
-        open: true,
-        message: 'An error occurred. Please check the console for details.',
-        severity: 'error',
-      });
+    } catch (error:any) {
+      setLoading(false)
+      if (error.response?.status === 403) {
+        setTimeout(() => navigate('/blogs'), 2000);
+        toast.error(error.response.data.msg);  
+      } else {
+        toast.error('An error occurred while deleting the post');  
+      }
+      console.error('Error deleting the post:', error);
     }
   };
 

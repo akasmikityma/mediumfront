@@ -2,15 +2,9 @@
 import { atom,selector,selectorFamily } from "recoil";
 
 
-interface blogtype{
-    id: string;
-    title: string;
-    content: string;
-    published: boolean;
-    authorId: string;
-}
+import { blogType } from "../Pages/Blogs";
 
-export const blogsState=atom<blogtype[]>({
+export const blogsState=atom<blogType[]>({
     key:"blogsstate",
     default:[]
 })

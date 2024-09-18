@@ -15,14 +15,14 @@ const SignUp = () => {
             <span className='text-md font-light underline'>login</span>
             </div>
             <div className='mt-3 w-2/3'>
-            <InputField label='username'type='text' onchange={(e)=>{
+            {/* <InputField label='username'type='text' onchange={(e)=>{
                setpostInputs(()=>{
                
                 
                })
             }}/>
             <InputField label='email'type='email'/>
-            <InputField label='password'type='password'/>
+            <InputField label='password'type='password'/> */}
             </div>
         </div>
         <div className='hidden lg:block'>
@@ -48,7 +48,7 @@ const Qoute=()=>{
     return (
         <div className='h-screen bg-slate-200 flex justify-center items-center'>
             <div className='p-5 w-2/3'>
-                <h3 className='font-bold text-lg'>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim pariatur quis, in excepturi similique perferendis laborum possimus nisi sit, quaerat neque rerum veritatis."</h3>
+                <h3 className='font-bold text-lg'>" a platform where stories come to life. Whether you're a seasoned writer or just starting, share your unique perspectives with a global audience and engage in meaningful conversations. Discover inspiring content, connect with like-minded individuals, and make your voice heard"</h3>
                 <h4 className='font-semibold mt-3'>bisahl</h4>
                 <p>baler ceo</p>
             </div>
